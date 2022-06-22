@@ -117,7 +117,7 @@ jobs:
          name: scan-backend-build
          command: |
            cd backend
-           npm audit fix --force
+           npm audit fix
            npm audit --audit-level=critical
 
 workflows:
