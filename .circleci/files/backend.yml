@@ -35,3 +35,16 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+  
+Outputs:
+  BackendPublicDNS:
+    Description: The Public DNS name of the Backend ec2
+    Value: !GetAtt EC2Instance.PublicDnsName
+    Export:
+      Name: Backend-DNS-Name
+  
+  EC2InstanceID:
+    Description: The id of this EC2 instance
+    Value: !Ref EC2Instance
+    Export:
+      Name: Instance-ID
