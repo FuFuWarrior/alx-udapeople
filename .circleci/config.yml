@@ -147,7 +147,7 @@ jobs:
           command: |
             aws cloudformation \
               list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
-              --no-paginate --output text >> ~/alx-udapeople/.circleci/ansible/inventory.txt
+              --no-paginate --output text >> ~/.circleci/ansible/inventory.txt
             
       - persist_to_workspace:
           root: ~/
