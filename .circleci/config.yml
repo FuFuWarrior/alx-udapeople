@@ -173,7 +173,6 @@ jobs:
             apk add --update tar
             apk add --update gzip
             apk add --update awscli
-            exit 1
       - run:
           name: Configure server
           command: |
