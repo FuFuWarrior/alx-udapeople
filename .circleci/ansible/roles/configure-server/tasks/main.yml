@@ -1,6 +1,6 @@
 ---
 
-- name: "Install Python"-
+- name: "Install Python"
   become: yes
   apt:
     name: ["python"]
