@@ -1,13 +1,4 @@
 ---
-
-# - name: "Install Python"
-#   become: yes
-#   apt:
-#     name: ["python3"]
-#     state: latest
-#     update_cache: yes
-
-
 - name: "update apt packages."
   become: yes
   apt:

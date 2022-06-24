@@ -12,16 +12,19 @@
     - ansible_host_key_checking: false
     - ansible_stdout_callback: yaml
 
-  # pre_tasks:
-  #   - name: "wait 600 seconds for target connection to become reachable/usable."
-  #     # Your code here
+  pre_tasks:
+    - name: "wait 600 seconds for target connection to become reachable/usable."
+       # Your code here
+        wait_for_connection:
+        delay: 60
+        timeout: 600
 
-    # - name: "install python for Ansible."
-    #     become: yes
-    #     apk:
-    #       name: ["python3"]
-    #       state: latest
-    #       update_cache: yes
+    - name: "install python for Ansible."
+      become: yes
+      apt:
+        name: "python3-pip"
+        update_cache: yes
+        state: present
 
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
