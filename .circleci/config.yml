@@ -177,8 +177,6 @@ jobs:
           name: Configure server
           command: |
             pwd
-            cd ..
-            pwd
             ls
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
