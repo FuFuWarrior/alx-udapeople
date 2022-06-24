@@ -199,4 +199,4 @@ workflows:
           requires: [build-frontend]
       - deploy-infrastructure
       - configure-infrastructure:
-          require: [deploy-infrastructure]
+          requires: [deploy-infrastructure]
