@@ -178,10 +178,9 @@ jobs:
       - run:
           name: Configure server
           command: |
-            pwd
-            ls
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
+      - destroy-environment
       # Here's where you will add some code to rollback on failure 
 
 workflows:
