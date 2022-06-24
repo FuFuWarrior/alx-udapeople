@@ -161,11 +161,11 @@ jobs:
     steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
-       - add_ssh_keys:
+      - add_ssh_keys:
           fingerprints: ["97:df:e3:93:cf:f1:1a:c5:82:39:71:18:04:b9:6a:ac"] 
       # attach workspace
-       - attach_workspace:
-            at: ~/
+      - attach_workspace:
+          at: ~/
       - run:
           name: Install dependencies
           command: |
