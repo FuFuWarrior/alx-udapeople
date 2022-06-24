@@ -152,7 +152,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+            - .circleci/*
       # Here's where you will add some code to rollback on failure
 
   configure-infrastructure:
@@ -160,6 +160,7 @@ jobs:
       - image : python:3.7-alpine3.11
     steps:
       # Checkout code from git
+      - checkout
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints: ["97:df:e3:93:cf:f1:1a:c5:82:39:71:18:04:b9:6a:ac"] 
