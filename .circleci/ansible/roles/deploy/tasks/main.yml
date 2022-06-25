@@ -1,8 +1,8 @@
  - name: Copy files
-    become: true
-    copy:
-      src: /root/project/artifact.tar.gz
-      dest: /home/ubuntu/artifact.tar.gz
+   become: true
+   copy:
+     src: /root/project/artifact.tar.gz
+     dest: /home/ubuntu/artifact.tar.gz
   - name: Unarchive
     become: true
     shell : |
