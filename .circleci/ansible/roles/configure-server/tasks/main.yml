@@ -14,7 +14,7 @@
   apt:
     autoremove: yes
 
-- name: "install dependencies."
+- name: "install dependencies (Node)."
   become: yes
   apt:
     name: ["nodejs", "npm"]
