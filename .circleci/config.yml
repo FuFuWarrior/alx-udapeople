@@ -208,12 +208,12 @@ jobs:
   
   run-migrations:
       docker:
-          - image: sleavely/node-awscli:14.x
+         - image: sleavely/node-awscli:14.x
       steps:
          - checkout
          - restore_cache:
-          keys:
-            - build-backend
+             keys:
+              - build-backend
          - run:
             name: Run migrations
             command: |
