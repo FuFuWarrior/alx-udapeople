@@ -238,12 +238,14 @@ jobs:
         - dependencies
         - run:
             name: Get backend url
-              command: |
-                BACKEND_IP=on describe-stacks --stack-name udapeople-backend-"${CIRCLE_WORKFLOW_ID:0:7}" --query "Stacks[0].Outputs[0].OutputValue" --output text)
+            command: |
+                BACKEND_IP=$(aws cloudformation \
+                list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
+                --no-paginate --output text)
                 echo "API_URL=${API_URL}" >> frontend/.env
         - run:
             name: deploy frontend objects
-              command: |
+            command: |
                 cd frontend
                 npm install
                 npm run build
