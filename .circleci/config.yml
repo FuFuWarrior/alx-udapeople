@@ -239,9 +239,7 @@ jobs:
         - run:
             name: Get backend url
               command: |
-                BACKEND_IP=$( aws cloudformation \
-                list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
-                --no-paginate --output text >> .circleci/ansible/inventory.txt)
+                BACKEND_IP=$( aws cloudformation list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" --no-paginate --output text >> .circleci/ansible/inventory.txt)
                 API_URL="http://${BACKEND_IP}:3030"
                 echo "API_URL=${API_URL}" >> frontend/.env
         - run:
