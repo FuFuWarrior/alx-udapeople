@@ -331,13 +331,15 @@ jobs:
                 list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
                 --no-paginate --output text)
              API_URL="http://${BACKEND_IP}:3030"
-             echo "${API_URL}"
+             echo "${API_URL}/api/status"
              if curl "${API_URL}/api/status" | grep "ok"
              then
                 return 0
              else
                 return 1
              fi
+      - destroy-environment
+      - revert-migrations
   
   
   smoke-test-frontend:
@@ -359,10 +361,12 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              return 0
+              return 1
             else
               return 1
             fi
+      - destroy-environment
+      - revert-migrations
          
 workflows:
   default:
