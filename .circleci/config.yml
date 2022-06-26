@@ -332,7 +332,7 @@ jobs:
                 --no-paginate --output text)
              API_URL="http://${BACKEND_IP}:3030"
              echo "${API_URL}/api/status"
-             curl -s "${API_URL}/api/status"
+             curl -s "${API_URL}/api/status" | "grep ok"
              
       - destroy-environment
       - revert-migrations
