@@ -274,7 +274,8 @@ jobs:
               apk add --update npm 
               apk add --update tar 
               apk add --update gzip
-              apk add --update openssh-client git 
+              apk add --update openssh-client git
+              pip install awscli
         - run:
            name: Deploy backend
            command: |
@@ -282,6 +283,7 @@ jobs:
               npm i
               npm run build
               cd ..
+              tar -C backend -czvf artifact.tar.gz .
               cd .circleci/ansible
               echo "Contents  of the inventory.txt file is -------"
               cat inventory.txt
