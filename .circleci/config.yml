@@ -334,8 +334,8 @@ jobs:
              echo "${API_URL}/api/status"
              curl -s "${API_URL}/api/status" | "grep ok"
              
-      - destroy-environment
-      - revert-migrations
+      #- destroy-environment
+      #- revert-migrations
   
   
   smoke-test-frontend:
@@ -361,8 +361,8 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment
-      - revert-migrations
+      #- destroy-environment
+      #- revert-migrations
          
 workflows:
   default:
