@@ -43,6 +43,12 @@ Outputs:
     Export:
       Name: Backend-DNS-Name
   
+  BackendPublicIP:
+    Description: The Public DNS name of the Backend ec2
+    Value: !GetAtt EC2Instance.PublicIp
+    Export:
+      Name: Backend-Public-IP
+  
   EC2InstanceID:
     Description: The id of this EC2 instance
     Value: !Ref EC2Instance
