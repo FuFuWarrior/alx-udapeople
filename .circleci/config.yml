@@ -456,7 +456,7 @@ jobs:
 workflows:
   default:
     jobs:
-      - blue-deployment
+      - old
       - build-frontend
       - build-backend
       - test-frontend:
