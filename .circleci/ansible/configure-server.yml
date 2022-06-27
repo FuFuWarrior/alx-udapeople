@@ -5,7 +5,7 @@
   user: ubuntu
   become: true
   become_method: sudo
-  become_user: root  
+  #become_user: root  
   gather_facts: false
   vars:
     - ansible_python_interpreter: /usr/bin/python3
@@ -22,9 +22,9 @@
     - name: "Install python for Ansible."
       become: yes
       apt:
-        name: "python3-pip"
+        name: "python3"
         update_cache: yes
-        state: present
+        state: latest
     
     - name: 'Wait port 22 to become reachable/usable.'
       wait_for:
@@ -43,6 +43,8 @@
     - TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
     - TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
+    - NODE_ENV: production
+    - ENVIRONMENT: production
 
   roles:
     - configure-server
