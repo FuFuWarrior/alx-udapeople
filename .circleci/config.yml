@@ -61,38 +61,38 @@ commands:
             
 jobs:
 
-  old:
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run: yum install -y tar gzip
-      - run:
-          name: Initialise cloudfront
-          command: |
-            aws cloudformation deploy \
-              --template-file .circleci/files/cloudfront.yml \
-              --tags project=udapeople \
-              --stack-name cloudfront-${CIRCLE_WORKFLOW_ID:0:7} \
-              --parameter-overrides WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}
-      - run:
-          name: get html file
-          command: |
-            curl -L html5example.com > index.html
-            cat index.html
-      - run:
-          name: deploy initial bucket
-          command: |
-            aws cloudformation deploy \
-              --template-file .circleci/files/frontend.yml \
-              --tags project=udapeople \
-                --stack-name starter-frontend-${CIRCLE_WORKFLOW_ID:0:5} \
-                --parameter-overrides ID=${CIRCLE_WORKFLOW_ID:0:5}
-      - run:
-          name: Copy index.html to bucket
-          command: aws s3 cp index.html s3://udapeople-${CIRCLE_WORKFLOW_ID:0:5}/index.html
-      - attach_workspace:
-          at: ~/
+  # old:
+  #   docker:
+  #     - image: amazon/aws-cli
+  #   steps:
+  #     - checkout
+  #     - run: yum install -y tar gzip
+  #     - run:
+  #         name: Initialise cloudfront
+  #         command: |
+  #           aws cloudformation deploy \
+  #             --template-file .circleci/files/cloudfront.yml \
+  #             --tags project=udapeople \
+  #             --stack-name cloudfront-${CIRCLE_WORKFLOW_ID:0:7} \
+  #             --parameter-overrides WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}
+  #     - run:
+  #         name: get html file
+  #         command: |
+  #           curl -L html5example.com > index.html
+  #           cat index.html
+  #     - run:
+  #         name: deploy initial bucket
+  #         command: |
+  #           aws cloudformation deploy \
+  #             --template-file .circleci/files/frontend.yml \
+  #             --tags project=udapeople \
+  #               --stack-name starter-frontend-${CIRCLE_WORKFLOW_ID:0:5} \
+  #               --parameter-overrides ID=${CIRCLE_WORKFLOW_ID:0:5}
+  #     - run:
+  #         name: Copy index.html to bucket
+  #         command: aws s3 cp index.html s3://udapeople-${CIRCLE_WORKFLOW_ID:0:5}/index.html
+  #     - attach_workspace:
+  #         at: ~/
    
   build-frontend:
     docker:
@@ -380,7 +380,7 @@ jobs:
                 --no-paginate --output text)
              API_URL="http://${BACKEND_IP}:3030"
              echo "${API_URL}/api/status"
-             curl -s "${API_URL}/api/status"
+             curl -s"${API_URL}/api/status"
              
       - destroy-environment
       - revert-migrations
