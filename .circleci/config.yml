@@ -301,6 +301,7 @@ jobs:
                 BACKEND_IP=$(aws cloudformation \
                 list-exports --query "Exports[?Name==\`Backend-Public-IP\`].Value" \
                 --no-paginate --output text)
+                API_URL="http://${BACKEND_IP}:3030"
                 echo "API_URL=${API_URL}" >> frontend/.env
                 cat frontend/.env
         - run:
