@@ -511,15 +511,9 @@ jobs:
 workflows:
   default:
     jobs:
-      - old
+      #- old
       - build-frontend:
-          filters:
-            branches:
-              only: [circleci-project-setup]
       - build-backend:
-          filters:
-            branches:
-              only: [circleci-project-setup]
       - test-frontend:
           requires: [build-frontend]
       - test-backend:
