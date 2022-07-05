@@ -208,7 +208,7 @@ jobs:
           name: Add back-end ip to ansible inventory
           command: |
             aws cloudformation \
-              list-exports --query "Exports[?Name==\`Backend-Public-IP\`].Value" \
+              list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
               --no-paginate --output text >> .circleci/ansible/inventory.txt
             cat ~/project/.circleci/ansible/inventory.txt
             
@@ -299,7 +299,7 @@ jobs:
             name: Get backend url
             command: |
                 BACKEND_IP=$(aws cloudformation \
-                list-exports --query "Exports[?Name==\`Backend-Public-IP\`].Value" \
+                list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
                 --no-paginate --output text)
                 API_URL="http://${BACKEND_IP}:3030"
                 echo "API_URL=${API_URL}" >> frontend/.env
@@ -385,7 +385,7 @@ jobs:
           name: Backend smoke test
           command: |
              BACKEND_IP=$(aws cloudformation \
-                list-exports --query "Exports[?Name==\`Backend-Public-IP\`].Value" \
+                list-exports --query "Exports[?Name==\`Backend-DNS-Name\`].Value" \
                 --no-paginate --output text)
              API_URL="http://${BACKEND_IP}:3030"
              echo "${API_URL}/api/status"
